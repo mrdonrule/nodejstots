@@ -1,0 +1,114 @@
+<%- include('../layouts'); -%>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>All Administrative Users</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active">Users</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="container">
+                <!-- SELECT2 EXAMPLE -->
+                <% if(errors != "") {                                      
+                    %>
+                    <% errors.forEach((item) => { %>
+                        <div class="alert alert-danger">
+                            <%- item %>
+                        </div>
+                        <% }); %>
+                            <% } %>
+
+                                <% if(success != "") { %>
+                                    <% success.forEach((item) => { %>
+                                        <div class="alert alert-success">
+                                            <%- item %>
+                                        </div>
+                                        <% }); %>
+                                            <% } %>
+                                                <div class="card card-default">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">All Users </h3>
+
+
+                                                    </div>
+                                                    <!-- /.card-header -->
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th>ID</th>
+                                                                        <th>Name</th>
+                                                                        <th>Email Address</th>
+                                                                        <th>Created At</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                    <% users.forEach((item) => { %>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <%- item.id %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- item.name %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- item.email %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%- item.createdAt.toDateString() %>
+                                                                            </td>
+                                                                            <td>
+
+                                                                                <div class="btn-group">
+                                                                                    <a href="/admin/user/edit/<%= item.id %>" class="btn btn-default btn-md">Edit</a>
+
+                                                                                    <button type="button" class="btn btn-info dropdown-toggle dropdown-hover dropdown-icon" data-toggle="dropdown">
+                                                      <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                                                    <div class="dropdown-menu" role="menu">
+                                                                                        <a class="dropdown-item" href="/admin/user/pwd/<%= item.id %>">Change Password</a>
+                                                                                        <a class="dropdown-item" href="/admin/user/delete/<%= item.id %>">Delete</a>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <% }); %>
+                                                                </table>
+                                                            </div>
+
+                                                            <!-- /.col -->
+                                                        </div>
+                                                        <!-- /.row -->
+                                                    </div>
+                                                    <!-- /.card-body -->
+                                                    <div class="card-footer">
+
+                                                    </div>
+                                                </div>
+                                                <!-- /.card -->
+
+            </div>
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- include('../footer'); -%>

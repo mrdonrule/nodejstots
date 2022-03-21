@@ -1,0 +1,96 @@
+<%- include('../layouts'); -%>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add Administrator User</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Users</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container">
+                <% if(errors != "") {                                      
+                    %>
+                    <% errors.forEach((item) => { %>
+                        <div class="alert alert-danger">
+                            <%- item %>
+                        </div>
+                        <% }); %>
+                            <% } %>
+
+                                <% if(success != "") { %>
+                                    <% success.forEach((item) => { %>
+                                        <div class="alert alert-success">
+                                            <%- item %>
+                                        </div>
+                                        <% }); %>
+                                            <% } %>
+                                                <!-- SELECT2 EXAMPLE -->
+                                                <div class="card card-default">
+                                                    <div class="card-header">
+                                                        <h3 class="card-title">Update
+                                                            <%=editUser.name %> Password
+                                                        </h3>
+
+                                                    </div>
+                                                    <!-- /.card-header -->
+                                                    <div class="card-body">
+                                                        <form role="form" action="/admin/user/pwd/<%=editUser.id %>" method="post">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <input type="hidden" name="id" value="<%=editUser.id %>" />
+
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Current Password</label>
+                                                                        <input class="form-control form-control-lg" value="" type="password" name="current_password" id="current_password" placeholder="Enter current password" required/>
+
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">New Password</label>
+                                                                        <input class="form-control form-control-lg" type="password" name="new_password" value="" id="new_password" placeholder="Enter new password" required />
+
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Verify Password</label>
+                                                                        <input class="form-control form-control-lg" type="password" name="confirm_password" value="" id="confirm_password" placeholder="Confirm password " required />
+
+                                                                    </div>
+
+                                                                    <div>
+
+                                                                    </div>
+                                                                    <div class="text-left mt-3">
+
+                                                                        <button type="submit" class="btn btn-lg btn-primary">Change Password
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                </form>
+                </div>
+                <!-- /.card -->
+
+            </div>
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- include('../footer'); -%>
